@@ -1,0 +1,13 @@
+name: 't2gp build info'
+description: 'get build information'
+inputs:
+  lables:
+    description: pull request labels, for push , it is empty array
+    required: true
+    default: []
+outputs:
+  environment_name:
+    description: beanstalk environment name
+runs:
+  using: 'node12'
+  main: '.dist/index.js'
