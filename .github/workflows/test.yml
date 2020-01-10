@@ -1,6 +1,6 @@
-name: @t2gp-actions/buildinfo
+name: d2c actions
 
-on: [push, pull-request]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -18,6 +18,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: run build info
-        uses: './'
+        uses: "./buildinfo"
         with:
-          labels: '${{ toJson(github.event.pull_request.*.name) }}'
+          labels: "${{ toJson(github.event.pull_request.labels.*.name) }}"
