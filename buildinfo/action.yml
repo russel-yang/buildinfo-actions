@@ -1,12 +1,16 @@
 name: 't2gp build info'
 description: 'get build information'
 inputs:
-  lables:
+  labels:
     description: pull request labels, for push , it is empty array
     required: true
 outputs:
   environment_name:
     description: beanstalk environment name
+  branch_name:
+    description: branch name
+  version:
+    description: git commit short hash
 runs:
   using: 'node12'
   main: '.dist/index.js'
