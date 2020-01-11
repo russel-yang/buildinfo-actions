@@ -18,15 +18,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: build buildinfo action
-        working-directory: buildinfo
         run: |
           npm install
           npm run build
       - name: test buildinfo action
         id: buildinfo
-        uses: "./buildinfo"
+        uses: './'
         with:
-          labels: "${{ toJson(github.event.pull_request.labels.*.name) }}"
+          labels: '${{ toJson(github.event.pull_request.labels.*.name) }}'
       - name: use output values
         run: |
           echo ${{steps.buildinfo.outputs.environment_name}}
