@@ -1,14 +1,18 @@
 const core = require('@actions/core');
 
 const chooseSandbox = labels => {
-  const sandboxes = ['sandbox1', 'sandbox2', 'sandbox3'];
+  const sandboxes = core.getInput('default_sanboxes') || [
+    'sandbox1',
+    'sandbox2',
+    'sandbox3'
+  ];
   for (label of labels) {
     if (sandboxes.includes(label)) {
       return label;
     }
   }
   if (getBranchName() === 'master') {
-    return 'T2gpWebDocker-env';
+    return core.getInput('master_environment_name') || 'T2gpWebDocker-env';
   }
   return '';
 };

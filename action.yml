@@ -4,6 +4,14 @@ inputs:
   labels:
     description: pull request labels, for push , it is empty array
     required: true
+  default_sanboxes:
+    description: default sandboxes
+    required: true
+    default: 'sandbox1, sandbox2, sandbox3'
+  master_environment_name:
+    description: master branch default environment name
+    required: true
+    default: 'T2gpWebDocker-env'
 outputs:
   environment_name:
     description: beanstalk environment name
