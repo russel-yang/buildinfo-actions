@@ -14,7 +14,7 @@ inputs:
     default: 'T2gpWebDocker-env'
   url_mappings:
     description: environment name to url url_mappings
-    required: true
+    required: false
     default: '{}'
 outputs:
   environment_name:

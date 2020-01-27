@@ -17,9 +17,6 @@ const chooseSandbox = labels => {
   return '';
 };
 
-const urlMappings = core.getInput('url_mappings');
-console.log(urlMappings);
-
 const getBranchName = () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
   const ref = process.env.GITHUB_REF;
@@ -45,6 +42,15 @@ const setSandbox = () => {
 const setVersion = () =>
   core.setOutput('version', process.env.GITHUB_SHA.substring(0, 8));
 
+const setUrl = () => {
+  const labels = JSON.parse(core.getInput('labels'));
+  const sandbox = chooseSandbox(labels);
+  const urlMappings = JSON.parse(core.getInput('url_mappings'));
+  if (sandbox && urlMappings) {
+    core.setOutput('url', urlMappings[sandbox]);
+  }
+};
+
 const main = () => {
   try {
     console.log('run build info action.');
@@ -52,6 +58,7 @@ const main = () => {
     setBranchName();
     setSandbox();
     setVersion();
+    setUrl();
 
     console.log('build info action done.');
   } catch (error) {
