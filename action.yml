@@ -15,6 +15,7 @@ inputs:
   url_mappings:
     description: environment name to url url_mappings
     required: false
+    default: '{}'
 outputs:
   environment_name:
     description: beanstalk environment name
@@ -22,6 +23,8 @@ outputs:
     description: branch name
   version:
     description: git commit short hash
+  url:
+    description: the depoloy url
 runs:
   using: 'node12'
   main: '.dist/index.js'
