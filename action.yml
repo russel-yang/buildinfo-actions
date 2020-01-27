@@ -4,14 +4,18 @@ inputs:
   labels:
     description: pull request labels, for push , it is empty array
     required: true
-  default_sanboxes:
-    description: default sandboxes
+  available_sanboxes:
+    description: avaiable sandboxes
     required: true
     default: 'sandbox1, sandbox2, sandbox3'
   master_environment_name:
     description: master branch default environment name
     required: true
     default: 'T2gpWebDocker-env'
+  url_mappings:
+    description: environment name to url url_mappings
+    required: true
+    default: '{}'
 outputs:
   environment_name:
     description: beanstalk environment name
@@ -19,6 +23,9 @@ outputs:
     description: branch name
   version:
     description: git commit short hash
+  url:
+    description: the depoloy url
+
 runs:
   using: 'node12'
   main: '.dist/index.js'

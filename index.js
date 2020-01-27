@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 
 const chooseSandbox = labels => {
-  const sandboxes = core.getInput('default_sanboxes') || [
+  const sandboxes = core.getInput('available_sanboxes') || [
     'sandbox1',
     'sandbox2',
     'sandbox3'
@@ -16,6 +16,9 @@ const chooseSandbox = labels => {
   }
   return '';
 };
+
+const urlMappings = core.getInput('url_mappings');
+console.log(urlMappings);
 
 const getBranchName = () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
