@@ -26,6 +26,12 @@ jobs:
         uses: './'
         with:
           labels: '${{ toJson(github.event.pull_request.labels.*.name) }}'
+          url_mappings: |
+            {
+              "sandbox1": "http://sb1.d2dragon.net",
+              "sandbox2": "http://sb2.d2dragon.net",
+              "T2gpWebDocker-env": "http://dev.d2dragon.net"
+            }
       - name: use output values
         run: |
           echo ${{steps.buildinfo.outputs.environment_name}}
