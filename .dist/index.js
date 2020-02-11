@@ -56,7 +56,7 @@ module.exports = require("os");
 const core = __webpack_require__(470);
 
 const chooseSandbox = labels => {
-  const sandboxes = core.getInput('available_sanboxes').split(',') || [
+  const sandboxes = core.getInput('available_sandboxes').split(',') || [
     'sandbox1',
     'sandbox2',
     'sandbox3'

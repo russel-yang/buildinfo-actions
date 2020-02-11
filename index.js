@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 
 const chooseSandbox = labels => {
-  const sandboxes = core.getInput('available_sanboxes').split(',') || [
+  const sandboxes = core.getInput('available_sandboxes').split(',') || [
     'sandbox1',
     'sandbox2',
     'sandbox3'
