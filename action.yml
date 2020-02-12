@@ -7,7 +7,7 @@ inputs:
   available_sandboxes:
     description: avaiable sandboxes
     required: true
-    default: 'sandbox1, sandbox2, sandbox3'
+    default: 'sandbox1,sandbox2,sandbox3'
   master_environment_name:
     description: master branch default environment name
     required: true

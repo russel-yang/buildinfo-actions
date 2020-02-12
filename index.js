@@ -1,11 +1,10 @@
 const core = require('@actions/core');
 
 const chooseSandbox = labels => {
-  const sandboxes = core.getInput('available_sandboxes').split(',') || [
-    'sandbox1',
-    'sandbox2',
-    'sandbox3'
-  ];
+  const sandboxes = core
+    .getInput('available_sandboxes')
+    .split(',')
+    .map(item => item.trim()) || ['sandbox1', 'sandbox2', 'sandbox3'];
   for (label of labels) {
     if (sandboxes.includes(label)) {
       return label;
