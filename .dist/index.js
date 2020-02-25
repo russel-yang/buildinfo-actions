@@ -80,7 +80,7 @@ const getBranchName = () => {
   if (eventName === 'push') {
     branchName = ref.split('/').pop();
   } else if (eventName === 'release') {
-    branchName = ref;
+    branchName = ref.split('/').pop();
   } else {
     branchName = process.env.GITHUB_HEAD_REF;
   }
@@ -97,8 +97,14 @@ const setSandbox = () => {
   core.setOutput('environment_name', sandbox);
 };
 
-const setVersion = () =>
-  core.setOutput('version', process.env.GITHUB_SHA.substring(0, 8));
+const setVersion = () => {
+  const eventName = process.env.GITHUB_EVENT_NAME;
+  let version = process.env.GITHUB_SHA.substring(0, 8);
+  if (eventName === 'release') {
+    version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
+  }
+  core.setOutput('version', version);
+};
 
 const setUrl = () => {
   const labels = JSON.parse(core.getInput('labels'));
