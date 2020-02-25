@@ -65,7 +65,9 @@ const chooseSandbox = labels => {
       return label;
     }
   }
-  if (getBranchName() === 'master') {
+
+  const eventName = process.env.GITHUB_EVENT_NAME;
+  if (getBranchName() === 'master' || eventName === 'release') {
     return core.getInput('master_environment_name') || 'T2gpWebDocker-env';
   }
   return '';
@@ -77,6 +79,8 @@ const getBranchName = () => {
   let branchName;
   if (eventName === 'push') {
     branchName = ref.split('/').pop();
+  } else if (eventName === 'release') {
+    branchName = ref;
   } else {
     branchName = process.env.GITHUB_HEAD_REF;
   }
