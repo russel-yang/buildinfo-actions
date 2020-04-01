@@ -89,8 +89,10 @@ const setBranchName = () => {
 
 const setSandbox = () => {
   const labels = JSON.parse(core.getInput('labels'));
+  //environment_prefix
+  const environment_prefix = core.getInput('environment_prefix');
   const sandbox = chooseSandbox(labels);
-  core.setOutput('environment_name', sandbox);
+  core.setOutput('environment_name', `${environment_prefix}${sandbox}`);
 };
 
 const setVersion = () =>
@@ -99,6 +101,7 @@ const setVersion = () =>
 const setUrl = () => {
   const labels = JSON.parse(core.getInput('labels'));
   const sandbox = chooseSandbox(labels);
+  console.log(core.getInput('url_mappings'));
   const urlMappings = JSON.parse(core.getInput('url_mappings'));
   if (sandbox && urlMappings) {
     core.setOutput('url', urlMappings[sandbox]);
