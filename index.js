@@ -12,7 +12,7 @@ const chooseSandbox = labels => {
   }
 
   const eventName = process.env.GITHUB_EVENT_NAME;
-  if (getBranchName() === 'master' || eventName === 'release') {
+  if (getBranchName() === 'develop' || eventName === 'release') {
     return core.getInput('master_environment_name') || 'T2gpWebDocker-env';
   }
   return '';
