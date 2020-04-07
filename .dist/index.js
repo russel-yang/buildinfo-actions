@@ -56,13 +56,15 @@ module.exports = require("os");
 const core = __webpack_require__(470);
 
 const chooseSandbox = labels => {
+  //environment_prefix
+  const environment_prefix = core.getInput('environment_prefix');
   const sandboxes = core
     .getInput('available_sandboxes')
     .split(',')
     .map(item => item.trim()) || ['sandbox1', 'sandbox2', 'sandbox3'];
   for (label of labels) {
     if (sandboxes.includes(label)) {
-      return label;
+      return `${environment_prefix}${label}`;
     }
   }
 
@@ -97,10 +99,9 @@ const setBranchName = () => {
 
 const setSandbox = () => {
   const labels = JSON.parse(core.getInput('labels'));
-  //environment_prefix
-  const environment_prefix = core.getInput('environment_prefix');
+
   const sandbox = chooseSandbox(labels);
-  core.setOutput('environment_name', `${environment_prefix}${sandbox}`);
+  core.setOutput('environment_name', sandbox);
 };
 
 const setVersion = () => {
