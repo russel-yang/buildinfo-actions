@@ -18,7 +18,7 @@ const chooseSandbox = labels => {
     return core.getInput('master_environment_name') || 'T2gpWebDocker-env';
   } else if (getBranchName() === 'develop') {
     return core.getInput('develop_environment_name');
-  } else if (eventName === 'release') {
+  } else if (eventName === 'release' || getBranchName() === 'release') {
     return core.getInput('release_environment_name');
   }
   return '';
@@ -44,9 +44,10 @@ const setBranchName = () => {
 
 const setSandbox = () => {
   const labels = JSON.parse(core.getInput('labels'));
-
-  const sandbox = chooseSandbox(labels);
-  core.setOutput('environment_name', sandbox);
+  if (labels.length) {
+    const sandbox = chooseSandbox(labels);
+    core.setOutput('environment_name', sandbox);
+  }
 };
 
 const setVersion = () => {
@@ -59,12 +60,13 @@ const setVersion = () => {
 };
 
 const setUrl = () => {
+  const environment_prefix = core.getInput('environment_prefix');
   const labels = JSON.parse(core.getInput('labels'));
   const sandbox = chooseSandbox(labels);
   console.log(core.getInput('url_mappings'));
   const urlMappings = JSON.parse(core.getInput('url_mappings'));
   if (sandbox && urlMappings) {
-    core.setOutput('url', urlMappings[sandbox]);
+    core.setOutput('url', urlMappings[sandbox.replace(environment_prefix, '')]);
   }
 };
 

@@ -4,7 +4,7 @@ inputs:
   labels:
     description: pull request labels, for push , it is empty array
     required: true,
-    default: '{}'
+    default: '[]'
   available_sandboxes:
     description: avaiable sandboxes
     required: true
@@ -37,7 +37,7 @@ outputs:
   version:
     description: git commit short hash
   url:
-    description: the depoloy url
+    description: the deploy url
 
 runs:
   using: 'node12'
