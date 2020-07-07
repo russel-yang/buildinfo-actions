@@ -16,7 +16,7 @@
     "@actions/core": "1.2.0",
     "@actions/github": "2.0.0",
     "install": "0.13.0",
-    "npm": "6.13.6"
+    "npm": "6.14.6"
   },
   "devDependencies": {
     "@zeit/ncc": "0.21.0"
