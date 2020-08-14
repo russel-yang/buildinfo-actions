@@ -35,6 +35,7 @@ jobs:
             }
       - name: use output values
         run: |
+          echo ${{env.GITHUB_REF}}
           echo ${{steps.buildinfo.outputs.environment_name}}
           echo ${{steps.buildinfo.outputs.version}}
           echo ${{steps.buildinfo.outputs.branch_name}}

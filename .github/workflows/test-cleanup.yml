@@ -1,0 +1,25 @@
+name: d2c actions
+
+on:
+  pull_request:
+    types: closed
+
+jobs:
+  test:
+    name: test build info
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: use output values
+        run: |
+          echo ${{env.GITHUB_REF}}
+          echo ${{env.GITHUB_BASE_REF}}
+          echo ${{env.GITHUB_HEAD_REF}}
