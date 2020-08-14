@@ -24,9 +24,8 @@ jobs:
           ref: ${{github.sha}}
       - name: use output values
         run: |
+          git rev-parse --short=8 ${{github.head_ref}}
           echo ${{github.sha}}
           echo ${{github.ref}}
           echo ${{github.head_ref}}
-          echo ${{github.head_sha}}
           echo ${{github.base_ref}}
-          echo ${{github.base_sha}}
