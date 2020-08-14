@@ -54,6 +54,8 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
+const { promisify } = __webpack_require__(669);
+const exec = promisify(__webpack_require__(129).exec);
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -99,15 +101,24 @@ const setBranchName = () => {
 
 const setSandbox = () => {
   const labels = JSON.parse(core.getInput('labels'));
-
-  const sandbox = chooseSandbox(labels || []);
-  core.setOutput('environment_name', sandbox);
+  if (labels.length) {
+    const sandbox = chooseSandbox(labels);
+    core.setOutput('environment_name', sandbox);
+  }
 };
 
-const setVersion = () => {
+const setVersion = async () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
+  console.log('eventName', eventName);
   let version = process.env.GITHUB_SHA.substring(0, 8);
-  if (eventName === 'release') {
+  if (eventName === 'pull_request') {
+    const head = process.env.GITHUB_REF.replace('merge', 'head');
+    console.log('head:', head);
+    version = (await exec(`git ls-remote -q | grep ${head}`)).stdout.substring(
+      0,
+      8
+    );
+  } else if (eventName === 'release') {
     version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
   }
   core.setOutput('version', version);
@@ -124,13 +135,13 @@ const setUrl = () => {
   }
 };
 
-const main = () => {
+const main = async () => {
   try {
     console.log('run build info action.');
 
     setBranchName();
     setSandbox();
-    setVersion();
+    await setVersion();
     setUrl();
 
     console.log('build info action done.');
@@ -141,6 +152,13 @@ const main = () => {
 
 main();
 
+
+/***/ }),
+
+/***/ 129:
+/***/ (function(module) {
+
+module.exports = require("child_process");
 
 /***/ }),
 
@@ -423,6 +441,13 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 669:
+/***/ (function(module) {
+
+module.exports = require("util");
 
 /***/ })
 
