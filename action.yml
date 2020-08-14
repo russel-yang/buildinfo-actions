@@ -3,7 +3,8 @@ description: 'get build information'
 inputs:
   labels:
     description: pull request labels, for push , it is empty array
-    required: true
+    required: true,
+    default: '[]'
   available_sandboxes:
     description: avaiable sandboxes
     required: true
@@ -12,6 +13,18 @@ inputs:
     description: master branch default environment name
     required: true
     default: 'T2gpWebDocker-env'
+  environment_prefix:
+    description: prefix for the environment name
+    required: true
+    default: ''
+  develop_environment_name:
+    description: develop branch default environment name
+    required: true
+    default: 'd2c-beanstalk-infra-dev'
+  release_environment_name:
+    description: release environment name
+    required: true
+    default: 'd2c-beanstalk-infra-dev'
   url_mappings:
     description: environment name to url url_mappings
     required: false
@@ -24,7 +37,7 @@ outputs:
   version:
     description: git commit short hash
   url:
-    description: the depoloy url
+    description: the deploy url
 
 runs:
   using: 'node12'

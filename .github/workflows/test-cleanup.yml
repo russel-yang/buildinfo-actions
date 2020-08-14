@@ -1,0 +1,32 @@
+name: d2c actions
+
+on:
+  pull_request:
+    types: closed
+
+jobs:
+  test:
+    name: clean up on close
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{github.sha}}
+      - name: use output values
+        run: |
+          echo ${{github.sha}}
+          echo ${{github.ref}}
+          echo ${{github.head_ref}}
+          echo ${{github.head_sha}}
+          echo ${{github.base_ref}}
+          echo ${{github.base_sha}}
