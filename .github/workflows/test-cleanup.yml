@@ -22,9 +22,27 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{github.sha}}
+      - name: test buildinfo action
+        id: buildinfo
+        uses: './'
+        with:
+          labels: '${{ toJson(github.event.pull_request.labels.*.name) }}'
+          environment_prefix: 'd2c-beanstalk-infra-'
+          url_mappings: |
+            {
+              "sandbox1": "http://sb1.d2dragon.net",
+              "sandbox2": "http://sb2.d2dragon.net",
+              "T2gpWebDocker-env": "http://dev.d2dragon.net"
+            }
       - name: use output values
         run: |
           echo ${{github.sha}}
           echo ${{github.ref}}
           echo ${{github.head_ref}}
           echo ${{github.base_ref}}
+      - name: output variables
+        run: |
+          echo ${{steps.buildinfo.outputs.environment_name}}
+          echo ${{steps.buildinfo.outputs.version}}
+          echo ${{steps.buildinfo.outputs.branch_name}}
+          echo ${{steps.buildinfo.outputs.url}}
