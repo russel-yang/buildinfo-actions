@@ -1,4 +1,6 @@
 const core = require('@actions/core');
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -50,10 +52,18 @@ const setSandbox = () => {
   }
 };
 
-const setVersion = () => {
+const setVersion = async () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
+  console.log('eventName', eventName);
   let version = process.env.GITHUB_SHA.substring(0, 8);
-  if (eventName === 'release') {
+  if (eventName === 'pull_request') {
+    const head = process.env.GITHUB_REF.replace('merge', 'head');
+    console.log('head:', head);
+    version = (await exec(`git ls-remote -q | grep ${head}`)).stdout.substring(
+      0,
+      8
+    );
+  } else if (eventName === 'release') {
     version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
   }
   core.setOutput('version', version);
@@ -70,13 +80,13 @@ const setUrl = () => {
   }
 };
 
-const main = () => {
+const main = async () => {
   try {
     console.log('run build info action.');
 
     setBranchName();
     setSandbox();
-    setVersion();
+    await setVersion();
     setUrl();
 
     console.log('build info action done.');
