@@ -36,6 +36,7 @@ jobs:
             }
       - name: use output values
         run: |
+          printenv
           echo ${{github.sha}}
           echo ${{github.ref}}
           echo ${{github.head_ref}}
