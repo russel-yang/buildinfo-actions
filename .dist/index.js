@@ -54,8 +54,7 @@ module.exports = require("os");
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const { promisify } = __webpack_require__(669);
-const exec = promisify(__webpack_require__(129).exec);
+const crypto = __webpack_require__(417);
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -107,17 +106,16 @@ const setSandbox = () => {
   }
 };
 
-const setVersion = async () => {
+const setVersion = () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
   console.log('eventName', eventName);
   let version = process.env.GITHUB_SHA.substring(0, 8);
   if (eventName === 'pull_request') {
-    const head = process.env.GITHUB_REF.replace('merge', 'head');
-    console.log('head:', head);
-    version = (await exec(`git ls-remote -q | grep ${head}`)).stdout.substring(
-      0,
-      8
-    );
+    version = crypto
+      .createHash('sha256')
+      .update(process.env.GITHUB_HEAD_REF)
+      .digest('hex')
+      .substring(0, 8);
   } else if (eventName === 'release') {
     version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
   }
@@ -135,13 +133,13 @@ const setUrl = () => {
   }
 };
 
-const main = async () => {
+const main = () => {
   try {
     console.log('run build info action.');
 
     setBranchName();
     setSandbox();
-    await setVersion();
+    setVersion();
     setUrl();
 
     console.log('build info action done.');
@@ -155,10 +153,10 @@ main();
 
 /***/ }),
 
-/***/ 129:
+/***/ 417:
 /***/ (function(module) {
 
-module.exports = require("child_process");
+module.exports = require("crypto");
 
 /***/ }),
 
@@ -441,13 +439,6 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
-
-/***/ }),
-
-/***/ 669:
-/***/ (function(module) {
-
-module.exports = require("util");
 
 /***/ })
 
