@@ -56,6 +56,7 @@ module.exports = require("os");
 const core = __webpack_require__(470);
 const { promisify } = __webpack_require__(669);
 const exec = promisify(__webpack_require__(129).exec);
+const crypto = __webpack_require__(417);
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -113,6 +114,12 @@ const setVersion = async () => {
   let version = process.env.GITHUB_SHA.substring(0, 8);
   if (eventName === 'pull_request') {
     const head = process.env.GITHUB_REF.replace('merge', 'head');
+    console.log(
+      crypto
+        .createHash('sha256')
+        .update(process.env.GITHUB_HEAD_REF)
+        .digest('hex')
+    );
     console.log('head:', head);
     version = (await exec(`git ls-remote -q | grep ${head}`)).stdout.substring(
       0,
@@ -159,6 +166,13 @@ main();
 /***/ (function(module) {
 
 module.exports = require("child_process");
+
+/***/ }),
+
+/***/ 417:
+/***/ (function(module) {
+
+module.exports = require("crypto");
 
 /***/ }),
 

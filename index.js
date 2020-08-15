@@ -1,6 +1,7 @@
 const core = require('@actions/core');
 const { promisify } = require('util');
 const exec = promisify(require('child_process').exec);
+const crypto = require('crypto');
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -58,6 +59,12 @@ const setVersion = async () => {
   let version = process.env.GITHUB_SHA.substring(0, 8);
   if (eventName === 'pull_request') {
     const head = process.env.GITHUB_REF.replace('merge', 'head');
+    console.log(
+      crypto
+        .createHash('sha256')
+        .update(process.env.GITHUB_HEAD_REF)
+        .digest('hex')
+    );
     console.log('head:', head);
     version = (await exec(`git ls-remote -q | grep ${head}`)).stdout.substring(
       0,
