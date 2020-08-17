@@ -45,10 +45,8 @@ const setBranchName = () => {
 
 const setSandbox = () => {
   const labels = JSON.parse(core.getInput('labels'));
-  if (labels.length) {
-    const sandbox = chooseSandbox(labels);
-    core.setOutput('environment_name', sandbox);
-  }
+  const sandbox = chooseSandbox(labels);
+  core.setOutput('environment_name', sandbox);
 };
 
 const setVersion = () => {
