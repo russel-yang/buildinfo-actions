@@ -27,6 +27,7 @@ jobs:
         with:
           labels: '${{ toJson(github.event.pull_request.labels.*.name) }}'
           environment_prefix: 'd2c-beanstalk-infra-'
+          develop_environment_name: 'eb-develop'
           url_mappings: |
             {
               "sandbox1": "http://sb1.d2dragon.net",
