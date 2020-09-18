@@ -65,6 +65,11 @@ const setVersion = () => {
   core.setOutput('version', version);
 };
 
+const setPackageVersion = () => {
+  const packageInfo = require('./package.json');
+  core.setOutput('package_version', (packageInfo && packageInfo.version) || '');
+};
+
 const setUrl = () => {
   const environment_prefix = core.getInput('environment_prefix');
   const labels = JSON.parse(core.getInput('labels'));
@@ -84,6 +89,7 @@ const main = () => {
     setSandbox();
     setVersion();
     setUrl();
+    setPackageVersion();
 
     console.log('build info action done.');
   } catch (error) {

@@ -38,6 +38,8 @@ outputs:
     description: git commit short hash
   url:
     description: the deploy url
+  package_version:
+    description: the version from package.json
 
 runs:
   using: 'node12'
