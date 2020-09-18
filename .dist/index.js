@@ -120,6 +120,11 @@ const setVersion = () => {
   core.setOutput('version', version);
 };
 
+const setPackageVersion = () => {
+  const packageInfo = __webpack_require__(731);
+  core.setOutput('package_version', (packageInfo && packageInfo.version) || '');
+};
+
 const setUrl = () => {
   const environment_prefix = core.getInput('environment_prefix');
   const labels = JSON.parse(core.getInput('labels'));
@@ -139,6 +144,7 @@ const main = () => {
     setSandbox();
     setVersion();
     setUrl();
+    setPackageVersion();
 
     console.log('build info action done.');
   } catch (error) {
@@ -437,6 +443,13 @@ exports.getState = getState;
 /***/ (function(module) {
 
 module.exports = require("path");
+
+/***/ }),
+
+/***/ 731:
+/***/ (function(module) {
+
+module.exports = {"name":"@d2c-actions/buildinfo","version":"1.0.0","description":"","main":"index.js","scripts":{"build":"ncc build index.js -o .dist"},"repository":{"type":"git","url":"git+https://github.com/take-two/d2c-actions.git"},"author":"","license":"ISC","dependencies":{"@actions/core":"1.2.0","@actions/github":"2.0.0","install":"0.13.0","npm":"6.13.6"},"devDependencies":{"@zeit/ncc":"0.21.0"},"bugs":{"url":"https://github.com/take-two/d2c-actions/issues"},"homepage":"https://github.com/take-two/d2c-actions#readme"};
 
 /***/ })
 
