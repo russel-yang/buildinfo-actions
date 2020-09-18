@@ -41,3 +41,4 @@ jobs:
           echo ${{steps.buildinfo.outputs.version}}
           echo ${{steps.buildinfo.outputs.branch_name}}
           echo ${{steps.buildinfo.outputs.url}}
+            echo ${{steps.buildinfo.outputs.package_version}}
