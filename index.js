@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const crypto = require('crypto');
+const fs = require('fs');
 
 const chooseSandbox = labels => {
   //environment_prefix
@@ -66,8 +67,13 @@ const setVersion = () => {
 };
 
 const setPackageVersion = () => {
-  const packageInfo = require('./package.json');
-  core.setOutput('package_version', (packageInfo && packageInfo.version) || '');
+  try {
+    const packageInfo = fs.readFileSync('./package.json');
+    const json = JSON.parse(packageInfo);
+    core.setOutput('package_version', (json && json.version) || '');
+  } catch {
+    core.setOutput('package_version', 'unknown');
+  }
 };
 
 const setUrl = () => {
