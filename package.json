@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@actions/core": "1.2.0",
+    "@actions/core": "1.2.6",
     "@actions/github": "2.0.0",
     "install": "0.13.0",
     "npm": "6.14.6"
