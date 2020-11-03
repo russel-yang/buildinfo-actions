@@ -6,7 +6,6 @@ module.exports =
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 const core = __webpack_require__(186);
-const crypto = __webpack_require__(417);
 const fs = __webpack_require__(747);
 
 const chooseSandbox = labels => {
@@ -61,13 +60,8 @@ const setVersion = () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
   console.log('eventName', eventName);
   let version = process.env.GITHUB_SHA.substring(0, 8);
-  if (eventName === 'pull_request') {
-    version = crypto
-      .createHash('sha256')
-      .update(process.env.GITHUB_HEAD_REF)
-      .digest('hex')
-      .substring(0, 8);
-  } else if (eventName === 'release') {
+
+  if (eventName === 'release') {
     version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
   }
   core.setOutput('version', version);
@@ -505,14 +499,6 @@ function toCommandValue(input) {
 }
 exports.toCommandValue = toCommandValue;
 //# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ 417:
-/***/ ((module) => {
-
-"use strict";
-module.exports = require("crypto");
 
 /***/ }),
 
