@@ -1,10 +1,12 @@
 name: d2c actions
 
-on: [push, pull_request]
+on:
+  pull_request:
+    types: closed
 
 jobs:
   test:
-    name: test build info
+    name: clean up on close
     runs-on: ubuntu-latest
 
     strategy:
@@ -12,22 +14,20 @@ jobs:
         node-version: [12.x]
 
     steps:
-      - uses: actions/checkout@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: build buildinfo action
-        run: |
-          npm install
-          npm run build
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{github.sha}}
       - name: test buildinfo action
         id: buildinfo
         uses: './'
         with:
           labels: '${{ toJson(github.event.pull_request.labels.*.name) }}'
           environment_prefix: 'd2c-beanstalk-infra-'
-          develop_environment_name: 'eb-develop'
           url_mappings: |
             {
               "sandbox1": "http://sb1.d2dragon.net",
@@ -36,9 +36,14 @@ jobs:
             }
       - name: use output values
         run: |
+          printenv
           echo ${{github.sha}}
+          echo ${{github.ref}}
+          echo ${{github.head_ref}}
+          echo ${{github.base_ref}}
+      - name: output variables
+        run: |
           echo ${{steps.buildinfo.outputs.environment_name}}
           echo ${{steps.buildinfo.outputs.version}}
           echo ${{steps.buildinfo.outputs.branch_name}}
           echo ${{steps.buildinfo.outputs.url}}
-          echo ${{steps.buildinfo.outputs.package_version}}
