@@ -27,17 +27,19 @@ const chooseSandbox = labels => {
 };
 
 const getBranchName = () => {
-  const eventName = process.env.GITHUB_EVENT_NAME;
-  const ref = process.env.GITHUB_REF;
   let branchName;
-  if (eventName === 'push') {
-    branchName = ref.split('/').pop();
-  } else if (eventName === 'release') {
-    branchName = ref.split('/').pop();
-  } else {
-    branchName = process.env.GITHUB_HEAD_REF;
+  switch (process.env.GITHUB_EVENT_NAME) {
+    case 'push':
+      branchName = process.env.GITHUB_REF;
+      break;
+    case 'release':
+      branchName = process.env.GITHUB_REF;
+      break;
+    default:
+      branchName = process.env.GITHUB_HEAD_REF;
+      break;
   }
-  return branchName;
+  return branchName.replace(/[^a-zA-Z0-9-_.]/g, '-');
 };
 
 const setBranchName = () => {
