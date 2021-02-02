@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.0...v5.0.1) (2021-02-02)
+
+
+### Bug Fixes
+
+* patch testing CI ([b638ea9](https://github.com/russel-yang/buildinfo-actions/commit/b638ea973fe42f02a471b2bdd3653a5de6909bba))
+
 # 1.0.0 (2021-02-02)
 
 
