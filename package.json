@@ -8,7 +8,7 @@
   },
   "repository": "github:russel-yang/buildinfo-actions",
   "author": "Take-Two Interactive, Inc.",
-  "license": "ISC",
+  "license": "UNLICENSED",
   "dependencies": {
     "@actions/core": "1.2.6",
     "@actions/github": "2.0.0",
