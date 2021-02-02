@@ -1,17 +1,14 @@
 {
   "name": "@d2c-actions/buildinfo",
-  "version": "1.0.0",
+  "version": "5.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js -o .dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/take-two/d2c-actions.git"
-  },
-  "author": "",
-  "license": "ISC",
+  "repository": "github:russel-yang/buildinfo-actions",
+  "author": "Take-Two Interactive, Inc.",
+  "license": "UNLICENSED",
   "dependencies": {
     "@actions/core": "1.2.6",
     "@actions/github": "2.0.0",
@@ -21,8 +18,29 @@
   "devDependencies": {
     "@vercel/ncc": "^0.24.1"
   },
-  "bugs": {
-    "url": "https://github.com/take-two/d2c-actions/issues"
-  },
-  "homepage": "https://github.com/take-two/d2c-actions#readme"
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            ".dist/**/*",
+            "CHANGELOG.md",
+            "package.json",
+            "package-lock.json"
+          ]
+        }
+      ]
+    ]
+  }
 }
