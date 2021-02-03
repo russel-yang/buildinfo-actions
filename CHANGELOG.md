@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.3...v5.0.4) (2021-02-03)
+
+
+### Bug Fixes
+
+* don't allow `.` ([8d24bf3](https://github.com/russel-yang/buildinfo-actions/commit/8d24bf3aead49712cfd25ed212f9ea386a62986e))
+
 ## [5.0.3](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.2...v5.0.3) (2021-02-03)
 
 
