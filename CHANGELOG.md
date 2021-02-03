@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.1...v5.0.2) (2021-02-03)
+
+
+### Bug Fixes
+
+* don't allow `_` in branch names ([de2edd5](https://github.com/russel-yang/buildinfo-actions/commit/de2edd5c28a9f786575d592d26ff79300f72dfc0))
+
 ## [5.0.1](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.0...v5.0.1) (2021-02-02)
 
 

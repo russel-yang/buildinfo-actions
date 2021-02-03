@@ -46,7 +46,7 @@ const getBranchName = () => {
       branchName = process.env.GITHUB_HEAD_REF;
       break;
   }
-  return branchName.replace(/[^a-zA-Z0-9-_.]/g, '-');
+  return branchName.replace(/[^a-zA-Z0-9-.]/g, '-');
 };
 
 const setBranchName = () => {
