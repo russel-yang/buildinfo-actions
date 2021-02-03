@@ -1,3 +1,11 @@
+## [5.0.3](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.2...v5.0.3) (2021-02-03)
+
+
+### Bug Fixes
+
+* lowercase branch name ([7d13a49](https://github.com/russel-yang/buildinfo-actions/commit/7d13a492f1d227d1d7be4cb95d3a54a0cbe0a774))
+* trim non-alphanumeric start/end of branch name ([b91d71b](https://github.com/russel-yang/buildinfo-actions/commit/b91d71b8b63c58209a2fb751cb533f33f0c9a757))
+
 ## [5.0.2](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.1...v5.0.2) (2021-02-03)
 
 
