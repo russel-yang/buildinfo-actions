@@ -53,7 +53,7 @@ const getBranchName = () => {
     .replace(/[^a-z0-9-]/g, '-')
     .replace(/^[^a-z0-9]+/, '')
     .replace(/[^a-z0-9]+$/, '');
-  if (branchName.length > max) {
+  if (branchName.length > branch_name_max) {
     branchName = `${branchName.substr(
       0,
       truncatedLength

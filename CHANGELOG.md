@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.0...v5.1.1) (2021-02-04)
+
+
+### Bug Fixes
+
+* variable name error ([5594ce0](https://github.com/russel-yang/buildinfo-actions/commit/5594ce0e0827885c91d546c8e37e08bef6e9d32e))
+
 # [5.1.0](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.5...v5.1.0) (2021-02-04)
 
 
