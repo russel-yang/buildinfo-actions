@@ -29,6 +29,10 @@ inputs:
     description: environment name to url url_mappings
     required: false
     default: '{}'
+  branch_name_max:
+    description: maximum length of sanitized branch name
+    required: true
+    default: 63
 outputs:
   environment_name:
     description: beanstalk environment name

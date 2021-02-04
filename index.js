@@ -27,8 +27,8 @@ const chooseSandbox = labels => {
 };
 
 const getBranchName = () => {
-  const max = 63;
-  const truncatedLength = Math.floor((max - 3) / 2);
+  const branch_name_max = core.getInput('branch_name_max');
+  const truncatedLength = Math.floor((branch_name_max - 3) / 2);
   let branchName;
   switch (process.env.GITHUB_EVENT_NAME) {
     case 'push':
