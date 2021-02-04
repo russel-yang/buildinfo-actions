@@ -1,3 +1,15 @@
+# [5.1.0](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.5...v5.1.0) (2021-02-04)
+
+
+### Bug Fixes
+
+* typo ([21e8cdb](https://github.com/russel-yang/buildinfo-actions/commit/21e8cdb080416eb645dc23c48e6c8a8e2a0b5960))
+
+
+### Features
+
+* add `branch_name_max` option ([5565ba1](https://github.com/russel-yang/buildinfo-actions/commit/5565ba159b528e3779e9875cdd2f2cb4aba43390))
+
 ## [5.0.5](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.4...v5.0.5) (2021-02-04)
 
 
