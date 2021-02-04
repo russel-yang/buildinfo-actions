@@ -6,7 +6,7 @@ inputs:
     required: true,
     default: '[]'
   available_sandboxes:
-    description: avaiable sandboxes
+    description: available sandboxes
     required: true
     default: 'sandbox1,sandbox2,sandbox3'
   master_environment_name:
