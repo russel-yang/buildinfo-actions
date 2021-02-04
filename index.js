@@ -27,6 +27,8 @@ const chooseSandbox = labels => {
 };
 
 const getBranchName = () => {
+  const max = 63;
+  const truncatedLength = Math.floor((max - 3) / 2);
   let branchName;
   switch (process.env.GITHUB_EVENT_NAME) {
     case 'push':
@@ -39,9 +41,19 @@ const getBranchName = () => {
       branchName = process.env.GITHUB_HEAD_REF;
       break;
   }
-  branchName = branchName.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/^[^a-z0-9]+/, '').replace(/[^a-z0-9]+$/, '');
-  if (branchName.length > 63) {
-    branchName =  `${branchName.substr(0, 30)}---${branchName.substr(branchName.length - 30, 30)}`;
+  branchName = branchName
+    .toLowerCase()
+    .replace(/[^a-z0-9-]/g, '-')
+    .replace(/^[^a-z0-9]+/, '')
+    .replace(/[^a-z0-9]+$/, '');
+  if (branchName.length > max) {
+    branchName = `${branchName.substr(
+      0,
+      truncatedLength
+    )}---${branchName.substr(
+      branchName.length - truncatedLength,
+      truncatedLength
+    )}`;
   }
   return branchName;
 };
