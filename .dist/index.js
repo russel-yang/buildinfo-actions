@@ -46,7 +46,11 @@ const getBranchName = () => {
       branchName = process.env.GITHUB_HEAD_REF;
       break;
   }
-  return branchName.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/^[^a-z0-9]+/, '').replace(/[^a-z0-9]+$/, '');
+  branchName = branchName.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/^[^a-z0-9]+/, '').replace(/[^a-z0-9]+$/, '');
+  if (branchName.length > 63) {
+    branchName =  `${branchName.substr(0, 30)}---${branchName.substr(branchName.length - 30, 30)}`;
+  }
+  return branchName;
 };
 
 const setBranchName = () => {

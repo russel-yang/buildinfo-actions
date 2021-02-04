@@ -1,3 +1,10 @@
+## [5.0.5](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.4...v5.0.5) (2021-02-04)
+
+
+### Bug Fixes
+
+* truncate branchname if over 63 characters ([85fdcb0](https://github.com/russel-yang/buildinfo-actions/commit/85fdcb06c798f045f8d613c74242f08191b3d045))
+
 ## [5.0.4](https://github.com/russel-yang/buildinfo-actions/compare/v5.0.3...v5.0.4) (2021-02-03)
 
 
