@@ -1,3 +1,10 @@
+## [5.1.2](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.1...v5.1.2) (2021-06-25)
+
+
+### Bug Fixes
+
+* use git hash as version number ([#27](https://github.com/russel-yang/buildinfo-actions/issues/27)) ([beccb01](https://github.com/russel-yang/buildinfo-actions/commit/beccb01fcde6f8febc14752e8a5ab22ede739067))
+
 ## [5.1.1](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.0...v5.1.1) (2021-02-04)
 
 
