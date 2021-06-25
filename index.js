@@ -72,13 +72,7 @@ const setVersion = () => {
   const eventName = process.env.GITHUB_EVENT_NAME;
   console.log('eventName', eventName);
   let version = process.env.GITHUB_SHA.substring(0, 8);
-  if (eventName === 'pull_request') {
-    version = crypto
-      .createHash('sha256')
-      .update(process.env.GITHUB_HEAD_REF)
-      .digest('hex')
-      .substring(0, 8);
-  } else if (eventName === 'release') {
+  if (eventName === 'release') {
     version = `${process.env.GITHUB_REF.split('/').pop()}-${version}`;
   }
   core.setOutput('version', version);
