@@ -46,5 +46,5 @@ outputs:
     description: the version from package.json
 
 runs:
-  using: 'node16'
+  using: 'node12'
   main: '.dist/index.js'
