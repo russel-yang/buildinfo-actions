@@ -11,10 +11,8 @@
   "repository": "github:russel-yang/buildinfo-actions",
   "author": "Take-Two Interactive, Inc.",
   "license": "UNLICENSED",
-  "dependencies": {
-    "@actions/core": "1.2.6"
-  },
   "devDependencies": {
+    "@actions/core": "1.2.6",
     "@vercel/ncc": "^0.24.1"
   },
   "release": {
