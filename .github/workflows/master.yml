@@ -8,14 +8,13 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          persist-credentials: false
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - run: npm ci
       - uses: cycjimmy/semantic-release-action@v3
         env:
