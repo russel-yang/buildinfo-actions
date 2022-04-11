@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js -o .dist",
-    "postversion": "npm run build"
+    "build:docs": "echo # @d2c-actions/buildinfo > README.md && npx action-docs@1.x --no-banner >> README.md",
+    "postversion": "npm run build && npm run build:docs"
   },
   "repository": "github:russel-yang/buildinfo-actions",
   "author": "Take-Two Interactive, Inc.",
@@ -27,6 +28,7 @@
         {
           "assets": [
             ".dist/**/*",
+            "README.md",
             "CHANGELOG.md",
             "package.json",
             "package-lock.json"
