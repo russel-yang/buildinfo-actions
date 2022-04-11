@@ -1,4 +1,4 @@
-# @d2c-actions/buildinfo  
+# @d2c-actions/buildinfo
 ## Description
 
 get build information
@@ -30,6 +30,6 @@ get build information
 
 ## Runs
 
-This action is an `node12` action.
+This action is an `node16` action.
 
 

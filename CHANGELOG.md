@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/russel-yang/buildinfo-actions/compare/v6.0.0...v6.0.1) (2022-04-11)
+
+
+### Bug Fixes
+
+* doc gen ([2207710](https://github.com/russel-yang/buildinfo-actions/commit/2207710bf5b37862bede56fdd13dd79008a83185))
+
 # [6.0.0](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.2...v6.0.0) (2022-04-11)
 
 
