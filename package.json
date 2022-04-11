@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "ncc build index.js -o .dist"
+    "build": "ncc build index.js -o .dist",
+    "postversion": "npm run build"
   },
   "repository": "github:russel-yang/buildinfo-actions",
   "author": "Take-Two Interactive, Inc.",
