@@ -1,21 +1,19 @@
 {
+  "private": true,
   "name": "@d2c-actions/buildinfo",
   "version": "5.1.2",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "ncc build index.js -o .dist"
-  },
+  "description": "gets build information",
+  "main": ".dist/index.js",
   "repository": "github:russel-yang/buildinfo-actions",
   "author": "Take-Two Interactive, Inc.",
   "license": "UNLICENSED",
-  "dependencies": {
-    "@actions/core": "1.2.6",
-    "@actions/github": "2.0.0",
-    "install": "0.13.0",
-    "npm": "6.14.6"
+  "scripts": {
+    "build": "ncc build index.js -o .dist",
+    "build:docs": "echo # @d2c-actions/buildinfo > README.md && npx action-docs@1.x --no-banner >> README.md",
+    "postversion": "npm run build && npm run build:docs"
   },
   "devDependencies": {
+    "@actions/core": "1.2.6",
     "@vercel/ncc": "^0.24.1"
   },
   "release": {
@@ -23,18 +21,14 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
+      "@semantic-release/npm",
       "@semantic-release/github",
       [
         "@semantic-release/git",
         {
           "assets": [
             ".dist/**/*",
+            "README.md",
             "CHANGELOG.md",
             "package.json",
             "package-lock.json"
