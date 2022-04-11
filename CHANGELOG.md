@@ -1,3 +1,22 @@
+# [6.0.0](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.2...v6.0.0) (2022-04-11)
+
+
+### Bug Fixes
+
+* move `@actions/core` to devDeps (module is bundled) ([3e8d2ee](https://github.com/russel-yang/buildinfo-actions/commit/3e8d2eedc799dea02b27361c5f0495cb30e46037))
+* remove unused `crypto` import ([bcb8af9](https://github.com/russel-yang/buildinfo-actions/commit/bcb8af9f1ca9f48869f286bbd0edfcfc4788f016))
+* remove unused dependencies ([8c6caab](https://github.com/russel-yang/buildinfo-actions/commit/8c6caab7e8988428566aeb90f0d2ebb4631342a2))
+
+
+### Features
+
+* update to node16 ([9136bfa](https://github.com/russel-yang/buildinfo-actions/commit/9136bfa6336bab7be660fed2889bb3265ecb470a))
+
+
+### BREAKING CHANGES
+
+* upgraded from node v12 to node v16
+
 ## [5.1.2](https://github.com/russel-yang/buildinfo-actions/compare/v5.1.1...v5.1.2) (2021-06-25)
 
 
