@@ -9,7 +9,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "ncc build index.js -o .dist",
-    "build:docs": "echo # @d2c-actions/buildinfo > README.md && npx action-docs@1.x --no-banner >> README.md",
+    "build:docs": "echo \"# @d2c-actions/buildinfo\" > README.md && npx action-docs@1.x --no-banner >> README.md",
     "postversion": "npm run build && npm run build:docs"
   },
   "devDependencies": {
