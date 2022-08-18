@@ -13,7 +13,7 @@
     "postversion": "npm run build && npm run build:docs"
   },
   "devDependencies": {
-    "@actions/core": "1.2.6",
+    "@actions/core": "1.9.1",
     "@vercel/ncc": "^0.24.1"
   },
   "release": {
